@@ -30,10 +30,11 @@ int main()
     n = sizeof(wav_arr)/sizeof(int);
     int mod_arr[n];
     //printf("The size of the array is %d\n",n);
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i=i+2)
     {
         //Dividing the data from the raw array by 2(0x02)
         mod_arr[i] = wav_arr[i] / 0x02;
+        mod_arr[i+1] = wav_arr[i+1] / 0x02;
     }
 
     for(int i=0;i<n;i++)
