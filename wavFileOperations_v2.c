@@ -29,24 +29,27 @@ int main()
     //finding the number of elements in an array
     n = sizeof(wav_arr)/sizeof(char);
     __uint8_t mod_arr[n];
-    printf("The size of the array is %d\n",n);
+    //printf("The size of the array is %d\n",n);
     for(int i=0;i<n;i=i+2)
     {
-        //Dividing the data from the raw array by 2(0x02)
-        __uint16_t data = (wav_arr[i] * 100) + wav_arr[i+1];
-        //printf("%x \n",data);
+        //Storing the first 8 bit of data in the 16 bit integer
+        __uint16_t data = wav_arr[i];
+
+        //Left shifting the first 8 bit
+        data = data<<8;
+
+        //storing the next 8 bit of data in the 16 bit integer
+        data = data + wav_arr[i+1];
         data = data * 0.5;
-        printf("%x \t",data);
-        mod_arr[i+1] = data & 0x00FF;
-        //printf("-----%x \t----",data);
+
+        //Storing the first part in an another array
         mod_arr[i] = data>>8;
-        
-         
+
+        //Storing the next part in the array
+        mod_arr[i+1] = ((data << 8) >> 8);  
+
         printf("%x %x\n", mod_arr[i], mod_arr[i+1]);
     }
-
-    // for(int i=0;i<n;i++)
-    //     printf("%x\t",mod_arr[i]);
     return 0;
     
 }
