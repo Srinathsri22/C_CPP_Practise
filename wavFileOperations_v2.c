@@ -39,7 +39,7 @@ int main()
         data = data<<8;
 
         //storing the next 8 bit of data in the 16 bit integer
-        data = data + wav_arr[i+1];
+        data = data | wav_arr[i+1];
         data = data * 0.5;
 
         //Storing the first part in an another array
